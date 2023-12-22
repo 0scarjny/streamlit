@@ -40,6 +40,24 @@ def load_model():
 
 model = load_model()
 
+@st.cache_data
+def load_image():
+    url = "https://raw.githubusercontent.com/0scarjny/streamlit/5be43e29013963fb8c766f7ce6af928e5c08b6c4/caradvisor(1).jpg"
+
+    # Send a GET request to the URL
+    response = requests.get(url)
+    
+    # Check if the request was successful
+    if response.status_code == 200:
+        with open("car.jpg", "wb") as file:
+            file.write(response.content)
+        print("Image downloaded successfully")
+    else:
+        print("Failed to download the image")
+    return "car.jpg"
+
+caradvisor_image = load_image()
+
 # Main page layout and navigation
 
 def home():
