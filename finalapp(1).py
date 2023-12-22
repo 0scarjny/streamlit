@@ -199,10 +199,10 @@ def car_recommendation():
     
     col_hp, col_mileage, col_year = st.columns(3)
     with col_hp:
-    hp = col_hp.slider("How powerful do you want your car to be?",
-                       int(data1["Horsepower"].min()),  # Rounded to int
-                       800,
-                       (10, 250))
+        hp = col_hp.slider("How powerful do you want your car to be?",
+                           int(data1["Horsepower"].min()),  # Rounded to int
+                           800,
+                           (10, 250))
 
     with col_mileage:
          mileage = col_mileage.slider("How many kilometers do you want your car to have done?",
