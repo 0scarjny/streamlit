@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-!pip install joblib
-
 import streamlit as st
 import pandas as pd
 import joblib
 import numpy as np
+import requests
 
 
 # Set general properties for our app
