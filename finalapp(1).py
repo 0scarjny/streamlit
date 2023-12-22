@@ -16,15 +16,27 @@ st.set_page_config(
 # Function to load the dataset and model, cached to improve load times
 @st.cache_data
 def load_data():
-    file_path = 'data_all_cars_clean.csv'  
-    return pd.read_csv(file_path, delimiter=';', on_bad_lines= "skip")
+    url='https://drive.google.com/file/d/1tUlHWYKdtXI4agRo0d_vmFnD9TUs2ghA/view?usp=sharing'
+    url='https://drive.google.com/uc?id=' + url.split('/')[-2]
+    return pd.read_csv(url, delimiter=';', on_bad_lines= "skip")
 
 data1 = load_data()
 
 @st.cache_data
 def load_model():
-    model_path = 'predictions.sav' 
-    return joblib.load(model_path)
+    # URL for direct download
+    url = "https://drive.google.com/uc?export=download&id=1p3PKvAmie_AhMrTjL_n_W_JUHv9912ic"
+
+    # Download the file
+    response = requests.get(url)
+    
+    if response.status_code == 200:
+        with open('data.sav', 'wb') as file:
+            file.write(response.content)
+    else:
+        print("Failed to download the file")
+
+    return joblib.load("data.sav")
 
 model = load_model()
 
