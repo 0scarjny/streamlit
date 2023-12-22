@@ -61,7 +61,7 @@ caradvisor_image = load_image()
 # Main page layout and navigation
 
 def home():
-    st.image('caradvisor.jpg')
+    st.image('car.jpg')
 
     st.title("AutoAdvisor: Pricing & Recommendations")
     st.write("Welcome to the AutoAdvisor! Choose an option below:")
