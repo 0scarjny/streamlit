@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+!pip install joblib
 
 import streamlit as st
 import pandas as pd
