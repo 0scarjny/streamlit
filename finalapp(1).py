@@ -169,7 +169,7 @@ def car_price_prediction():
         lower_bound = int(predicted_price // 1000) * 1000  #Round down to nearest thousand
         upper_bound = int((predicted_price + 1000) // 1000) * 1000  #Round up to nearest thousand
 
-        st.write(f"Your car price is between {lower_bound} and {upper_bound}")
+        st.write(f"Your car price is between {lower_bound} and {upper_bound} CHF")
 
 def format_datatable(df):
     return df.style.format({
