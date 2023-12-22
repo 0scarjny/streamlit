@@ -94,7 +94,7 @@ def car_price_prediction():
     if 'mileage' not in st.session_state:
         st.session_state['mileage'] = 0
     if 'horsepower' not in st.session_state:
-        st.session_state['horsepower'] = 0
+        st.session_state['horsepower'] = 150
     if 'selected_brand' not in st.session_state:
         st.session_state['selected_brand'] = brand_options[0]
     if 'selected_transmission' not in st.session_state:
@@ -104,7 +104,7 @@ def car_price_prediction():
     if 'selected_fuel' not in st.session_state:
         st.session_state['selected_fuel'] = fuel_options[0]
     if 'year' not in st.session_state:
-        st.session_state['year'] = 1950
+        st.session_state['year'] = 2018
 
     # Introducing columns for user inputs
     col1, col2, col3, col4, col5, col6, col7, col8 = st.columns(8)
@@ -197,7 +197,7 @@ def car_recommendation():
     fuel_options = data1["Fuel"].unique()
     brand_options = data1["brand"].unique()
     
-    col_hp, col_mileage, col_year = st.columns(3)
+    col_hp, col_mileage, col_year, col_budget = st.columns(4)
     with col_hp:
         hp = col_hp.slider("How powerful do you want your car to be?",
                            int(data1["Horsepower"].min()),  # Rounded to int
@@ -214,6 +214,11 @@ def car_recommendation():
                                       0,
                                       data1["car_age"].max(),
                                       (0,10))
+    with col_budget:
+         mileage = col_budget.slider("What is your budget?",
+                                      data1["price"].min(),
+                                      400000,       #same purpose here
+                                      (0, 100000))
 
     #Creating columns for brand, model, transmission, type, and fuel selections
     col1, col2, col3, col4, col5 = st.columns(5)
