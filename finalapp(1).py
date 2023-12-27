@@ -22,7 +22,7 @@ def load_data():
 
 data1 = load_data()
 
-@st.cache_data
+@st.cache(allow_output_mutation=True)
 def load_model():
     # URL for direct download
     url = "https://drive.google.com/uc?export=download&id=1p3PKvAmie_AhMrTjL_n_W_JUHv9912ic"
@@ -31,12 +31,12 @@ def load_model():
     response = requests.get(url)
     
     if response.status_code == 200:
-        with open('data.sav', 'wb') as file:
-            file.write(response.content)
+        # Load the model directly from the response content
+        model_file = io.BytesIO(response.content)
+        return joblib.load(model_file)
     else:
-        print("Failed to download the file")
-
-    return joblib.load("data.sav")
+        st.error("Failed to download the model file.")
+        return None
 
 model = load_model()
 
