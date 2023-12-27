@@ -4,7 +4,7 @@ import pandas as pd
 import joblib
 import numpy as np
 import requests
-import io
+
 
 # Set general properties for our app
 st.set_page_config(
@@ -22,7 +22,7 @@ def load_data():
 
 data1 = load_data()
 
-@st.cache(allow_output_mutation=True)
+@st.cache_data
 def load_model():
     # URL for direct download
     url = "https://drive.google.com/uc?export=download&id=1KVIuHDD0XEXSqpnP6qzVbhuAjkjbW4Ki"
@@ -31,12 +31,12 @@ def load_model():
     response = requests.get(url)
     
     if response.status_code == 200:
-        # Load the model directly from the response content
-        model_file = io.BytesIO(response.content)
-        return joblib.load(model_file)
+        with open('data.sav', 'wb') as file:
+            file.write(response.content)
     else:
-        st.error("Failed to download the model file.")
-        return None
+        print("Failed to download the file")
+
+    return joblib.load("data.sav")
 
 model = load_model()
 
@@ -285,6 +285,5 @@ def main():
 # Main function to run our app
 if __name__ == "__main__":
     main()
-
 
 
