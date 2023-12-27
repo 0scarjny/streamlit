@@ -4,7 +4,7 @@ import pandas as pd
 import joblib
 import numpy as np
 import requests
-
+import io
 
 # Set general properties for our app
 st.set_page_config(
