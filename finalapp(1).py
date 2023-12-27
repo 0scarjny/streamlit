@@ -25,7 +25,7 @@ data1 = load_data()
 @st.cache(allow_output_mutation=True)
 def load_model():
     # URL for direct download
-    url = "https://drive.google.com/uc?export=download&id=1p3PKvAmie_AhMrTjL_n_W_JUHv9912ic"
+    url = "https://drive.google.com/uc?export=download&id=1KVIuHDD0XEXSqpnP6qzVbhuAjkjbW4Ki"
 
     # Download the file
     response = requests.get(url)
